@@ -1,5 +1,10 @@
+// Colors
+import {drawFingers} from "../../js/drawing-hands.js";
+
+const colorWhite = '#FFF';
+
 // Our input frames will come from here.
-const videoElement =
+export const videoElement =
     document.getElementsByClassName('input_video')[0];
 const canvasElement =
     document.getElementsByClassName('output_canvas')[0];
@@ -34,12 +39,14 @@ function onResults(results) {
             const classification = results.multiHandedness[index];
             const isRightHand = classification.label === 'Right';
             const landmarks = results.multiHandLandmarks[index];
+            drawFingers(landmarks)
+
             drawConnectors(
                 canvasCtx, landmarks, HAND_CONNECTIONS,
-                {color: isRightHand ? '#00FF00' : '#FF0000'}),
+                {color: isRightHand ? colorWhite : colorWhite}),
                 drawLandmarks(canvasCtx, landmarks, {
-                    color: isRightHand ? '#00FF00' : '#FF0000',
-                    fillColor: isRightHand ? '#FF0000' : '#00FF00',
+                    color: isRightHand ? colorWhite : colorWhite,
+                    fillColor: isRightHand ? colorWhite : colorWhite,
                     radius: (x) => {
                         return lerp(x.from.z, -0.15, .1, 10, 1);
                     }
