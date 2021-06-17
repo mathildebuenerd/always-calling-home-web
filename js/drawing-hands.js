@@ -8,10 +8,11 @@ const fingersIndex = {
     ring: 16,
     little: 20,
 }
-
 const fingers = Object.keys(fingersIndex);
+const boundingBoxes = [];
 
 initFingers();
+setTimeout(getAudioButtonsPosition, 5000);
 
 export function initFingers() {
     fingers.map((finger) => {
@@ -22,14 +23,19 @@ export function initFingers() {
     });
 }
 
-export function drawFingers(landmarks) {
+function getAudioButtonsPosition() {
     const triggerAudioButtons = document.querySelectorAll('.trigger-audio');
 
-    const boundingBoxes = [];
     for (const button of triggerAudioButtons) {
-        boundingBoxes.push(button.getBoundingClientRect());
+        const data = {
+            boundingBox: button.getBoundingClientRect(),
+            isActive: false,
+        }
+        boundingBoxes.push(data);
     }
+}
 
+export function drawFingers(landmarks) {
     fingers.map((finger) => {
         const dot = document.querySelector('.dot-' + finger);
         const leftPos = landmarks[fingersIndex[finger]].x * videoElement.offsetWidth + 'px';
@@ -38,14 +44,22 @@ export function drawFingers(landmarks) {
         dot.style.top = topPos;
 
         for (const [index, boundingBox] of boundingBoxes.entries()) {
-            if (hasEnteredButton(boundingBox, leftPos, topPos)) {
+            if (hasEnteredButton(boundingBox.boundingBox, leftPos, topPos)) {
                 const event = new CustomEvent('fingerHover', {detail: {index}});
                 dot.dispatchEvent(event);
             }
         }
 
         dot.addEventListener('fingerHover', (e) => {
-            playSound(e.detail.index);
+            e.stopPropagation();
+            const box = boundingBoxes[e.detail.index];
+
+            if (box.isActive) {
+                return;
+            }
+
+            playSound(e.detail.index, () => box.isActive = false);
+            box.isActive = true;
         })
     });
 }
