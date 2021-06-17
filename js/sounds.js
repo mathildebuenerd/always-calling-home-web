@@ -5,7 +5,6 @@ const files = [
 
 const audioList = [];
 
-export let triggerAudioButtons;
 window.addEventListener('DOMContentLoaded', () => {
     files.map((file) => {
         const audio = new Audio('sounds/' + file + '.mp3');
@@ -18,8 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
         button.style.top = Math.random() * window.innerHeight + 'px';
         document.body.appendChild(button);
     });
-
-    triggerAudioButtons = document.querySelectorAll('.trigger-audio');
 });
 
 

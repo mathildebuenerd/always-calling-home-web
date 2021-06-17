@@ -1,5 +1,5 @@
 import {videoElement} from "../mediapipe/js/camera.js";
-import {triggerAudioButtons, playSound} from "./sounds.js";
+import {playSound} from "./sounds.js";
 
 const fingersIndex = {
     thumb: 4,
@@ -22,13 +22,13 @@ export function initFingers() {
     });
 }
 
-
-
-console.log({triggerAudioButtons});
-
 export function drawFingers(landmarks) {
-    const triggerAudioButton2 = document.querySelectorAll('.trigger-audio');
-    const boundingBox = triggerAudioButton2[0].getBoundingClientRect();
+    const triggerAudioButtons = document.querySelectorAll('.trigger-audio');
+
+    const boundingBoxes = [];
+    for (const button of triggerAudioButtons) {
+        boundingBoxes.push(button.getBoundingClientRect());
+    }
 
     fingers.map((finger) => {
         const dot = document.querySelector('.dot-' + finger);
@@ -37,13 +37,14 @@ export function drawFingers(landmarks) {
         dot.style.left = leftPos;
         dot.style.top = topPos;
 
-        if (hasEnteredButton(boundingBox, leftPos, topPos)) {
-            const event = new CustomEvent('fingerHover', {detail: {index: 0}});
-            dot.dispatchEvent(event);
+        for (const [index, boundingBox] of boundingBoxes.entries()) {
+            if (hasEnteredButton(boundingBox, leftPos, topPos)) {
+                const event = new CustomEvent('fingerHover', {detail: {index}});
+                dot.dispatchEvent(event);
+            }
         }
 
         dot.addEventListener('fingerHover', (e) => {
-            console.log('finger has hovered something!', {e}, e.detail)
             playSound(e.detail.index);
         })
     });
@@ -55,11 +56,6 @@ function hasEnteredButton(boundingBox, leftPos, topPos) {
     const fingerLeft = parseInt(leftPos);
     const fingerTop = parseInt(topPos);
 
-    if ((fingerLeft > left && fingerLeft < left + width) && (fingerTop > top && fingerTop < top + height)) {
-        console.log('I hovered')
-        return true;
-    }
-
-    return false;
+    return (fingerLeft > left && fingerLeft < left + width) && (fingerTop > top && fingerTop < top + height);
 }
 
