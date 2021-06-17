@@ -81,6 +81,7 @@ body {
     position: absolute;
     left: 10px;
     top: 10px;
+    visibility: hidden;
 }
 
 .loading {
@@ -95,6 +96,9 @@ body {
     justify-content: center;
     opacity: 1;
     transition: opacity 1s;
+    width: 100vw;
+    height: 100vh;
+    background-color: pink;
 }
 
 .loading .message {

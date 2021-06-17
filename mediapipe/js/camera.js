@@ -77,7 +77,7 @@ camera.start();
 // options.
 new ControlPanel(controlsElement, {
     selfieMode: true,
-    maxNumHands: 2,
+    maxNumHands: 1,
     minDetectionConfidence: 0.5,
     minTrackingConfidence: 0.5
 })
