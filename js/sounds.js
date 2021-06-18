@@ -13,17 +13,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const audio = new Audio('sounds/' + file + '.mp3');
         audioList.push(audio);
 
-        // const button = document.createElement('button');
-        // button.textContent = 'hover me';
-
         const image = document.createElement('img');
         image.src = `images/rocks/rock_${index}.png`;
         image.classList.add('trigger-audio');
         image.style.left = Math.random() * window.innerWidth + 'px';
         image.style.top = Math.random() * window.innerHeight + 'px';
 
-
-        // button.appendChild(image);
         document.body.appendChild(image);
     });
 });
