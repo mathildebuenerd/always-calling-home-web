@@ -98,7 +98,8 @@ body {
     transition: opacity 1s;
     width: 100vw;
     height: 100vh;
-    background-color: pink;
+    background-color: #333;
+    z-index: 2;
 }
 
 .loading .message {
@@ -110,8 +111,8 @@ body {
     width: 120px;
     height: 120px;
     animation: spin 1s linear infinite;
-    border: 32px solid #bebebe;
-    border-top: 32px solid #3498db;
+    border: 32px solid #333;
+    border-top: 32px solid #C586FF;
     border-radius: 50%;
 }
 

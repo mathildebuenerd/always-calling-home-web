@@ -1,21 +1,30 @@
 const files = [
     '8873_(1992_UM2)_2458048_25593',
+    '8873_(1992_UM2)_Loop_Max_',
     '10144_(1994_AB2)_Loop_Max',
+    '8369_Miyata_(1991_GR)_Loop_Max',
+    '10144_(1994_AB2)_2458055_26304_python',
 ];
 
 const audioList = [];
 
 window.addEventListener('DOMContentLoaded', () => {
-    files.map((file) => {
+    files.map((file, index) => {
         const audio = new Audio('sounds/' + file + '.mp3');
         audioList.push(audio);
 
-        const button = document.createElement('button');
-        button.textContent = 'hover me';
-        button.classList.add('trigger-audio');
-        button.style.left = Math.random() * window.innerWidth + 'px';
-        button.style.top = Math.random() * window.innerHeight + 'px';
-        document.body.appendChild(button);
+        // const button = document.createElement('button');
+        // button.textContent = 'hover me';
+
+        const image = document.createElement('img');
+        image.src = `images/rocks/rock_${index}.png`;
+        image.classList.add('trigger-audio');
+        image.style.left = Math.random() * window.innerWidth + 'px';
+        image.style.top = Math.random() * window.innerHeight + 'px';
+
+
+        // button.appendChild(image);
+        document.body.appendChild(image);
     });
 });
 
