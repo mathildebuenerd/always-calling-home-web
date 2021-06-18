@@ -22,6 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 export function playSound(audioIndex, callback) {
     const audio = audioList[audioIndex];
+    console.log('I am playing ' + files[audioIndex])
 
     // During the sound playing, we set isActive to true,
     // and prevent the sound to be played again
@@ -29,5 +30,8 @@ export function playSound(audioIndex, callback) {
     const {duration: durationInSeconds} = audio;
     const durationInMilliseconds = durationInSeconds * 1000;
     audio.play();
-    setTimeout(callback, durationInMilliseconds)
+    setTimeout(() => {
+        console.log('I stop playing ' + files[audioIndex])
+        callback();
+    }, durationInMilliseconds)
 }
