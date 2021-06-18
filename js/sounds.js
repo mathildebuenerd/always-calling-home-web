@@ -13,11 +13,13 @@ window.addEventListener('DOMContentLoaded', () => {
         const audio = new Audio('sounds/' + file + '.mp3');
         audioList.push(audio);
 
+        const offset = 200;
+
         const image = document.createElement('img');
         image.src = `images/rocks/rock_${index}.png`;
         image.classList.add('trigger-audio');
-        image.style.left = Math.random() * window.innerWidth + 'px';
-        image.style.top = Math.random() * window.innerHeight + 'px';
+        image.style.left = Math.random() * (window.innerWidth - offset) + offset/2 + 'px';
+        image.style.top = Math.random() * (window.innerHeight - offset) + offset/2 + 'px';
 
         document.body.appendChild(image);
     });
@@ -34,8 +36,20 @@ export function playSound(audioIndex, callback) {
     const {duration: durationInSeconds} = audio;
     const durationInMilliseconds = durationInSeconds * 1000;
     audio.play();
+
+    // Animate the rock
+    giveVisualFeedback(audioIndex, durationInSeconds);
+
     setTimeout(() => {
         console.log('I stop playing ' + files[audioIndex])
         callback();
     }, durationInMilliseconds)
+}
+
+function giveVisualFeedback(index, durationInSeconds) {
+    const image = document.querySelector(`.trigger-audio:nth-of-type(${index + 1})`);
+    image.style.animation = `rockFloat${index} 4s infinite`;
+    setTimeout(() => {
+        image.style.animation = '';
+    }, durationInSeconds * 1000)
 }

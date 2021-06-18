@@ -108,11 +108,11 @@ body {
 
 .loading .spinner {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 300px;
+    height: 300px;
     animation: spin 1s linear infinite;
-    border: 32px solid #333;
-    border-top: 32px solid #C586FF;
+    border: 10px solid #333;
+    border-top: 10px solid #C586FF;
     border-radius: 50%;
 }
 
