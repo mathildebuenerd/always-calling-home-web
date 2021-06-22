@@ -4,6 +4,10 @@ const files = [
     '10144_(1994_AB2)_Loop_Max',
     '8369_Miyata_(1991_GR)_Loop_Max',
     '10144_(1994_AB2)_2458055_26304_python',
+    '10181_Davidacomba_(1996_FP3)_Loop_Max',
+    '11184_Postma_(1998_HJ9)_2458165_40164',
+    '11184_Postma_(1998_HJ9)Loop_Max',
+    '13169_(1995_XS1)_2458055_26304',
 ];
 
 const audioList = [];

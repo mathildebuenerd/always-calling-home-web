@@ -81,7 +81,7 @@ body {
     position: absolute;
     left: 10px;
     top: 10px;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 
 .loading {

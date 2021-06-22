@@ -18,6 +18,8 @@
     /*transform: scale(0.5) translate(-75%, -75%);*/
     /*border: 1px solid greenyellow;*/
     max-width: 150px;
+    transform: translate(0);
+    transition: 1s ease;
 }
 
 video.input_video.selfie {
@@ -75,6 +77,30 @@ video.input_video.selfie {
     0% {transform: translate3d(0, 0, 0)}
     25% {transform: translate3d(5px, -10px, 0)}
     75% {transform: translate3d(20px, 5px, 0)}
+    100% {transform: translate3d(0, 0, 0)}
+}
+@keyframes rockFloat5 {
+    0% {transform: translate3d(0, 0, 0)}
+    25% {transform: translate3d(10px, -20px, 0)}
+    75% {transform: translate3d(25px, -10px, 0)}
+    100% {transform: translate3d(0, 0, 0)}
+}
+@keyframes rockFloat6 {
+    0% {transform: translate3d(0, 0, 0)}
+    25% {transform: translate3d(-10px, -20px, 0)}
+    75% {transform: translate3d(5px, 5px, 0)}
+    100% {transform: translate3d(0, 0, 0)}
+}
+@keyframes rockFloat7 {
+    0% {transform: translate3d(0, 0, 0)}
+    25% {transform: translate3d(15px, -5px, 0)}
+    75% {transform: translate3d(-5px, 5px, 0)}
+    100% {transform: translate3d(0, 0, 0)}
+}
+@keyframes rockFloat8 {
+    0% {transform: translate3d(0, 0, 0)}
+    25% {transform: translate3d(5px, -15px, 0)}
+    75% {transform: translate3d(15px, -5px, 0)}
     100% {transform: translate3d(0, 0, 0)}
 }
 
