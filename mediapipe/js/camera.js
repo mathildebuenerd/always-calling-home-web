@@ -1,16 +1,11 @@
 // Colors
 import {drawFingers} from "../../js/drawing-hands.js";
 
-const colorWhite = '#FFF';
-
 // Our input frames will come from here.
 export const videoElement =
     document.getElementsByClassName('input_video')[0];
-const canvasElement =
-    document.getElementsByClassName('output_canvas')[0];
 const controlsElement =
     document.getElementsByClassName('control-panel')[0];
-const canvasCtx = canvasElement.getContext('2d');
 
 // We'll add this to our control panel later, but we'll save it here so we can
 // call tick() each time the graph runs.
