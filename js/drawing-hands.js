@@ -59,6 +59,7 @@ export function drawFingers(landmarks) {
             if (hasEnteredButton(boundingBox.boundingBox, leftPos, topPos)) {
                 const event = new CustomEvent('fingerHover', {detail: {index}});
                 dot.dispatchEvent(event);
+                return;
             }
         }
     });
