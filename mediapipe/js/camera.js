@@ -29,31 +29,14 @@ function onResults(results) {
     // Update the frame rate.
     fpsControl.tick();
 
-    // Draw the overlays.
-    canvasCtx.save();
-    canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-    canvasCtx.drawImage(
-        results.image, 0, 0, canvasElement.width, canvasElement.height);
     if (results.multiHandLandmarks && results.multiHandedness) {
         for (let index = 0; index < results.multiHandLandmarks.length; index++) {
             const classification = results.multiHandedness[index];
             const isRightHand = classification.label === 'Right';
             const landmarks = results.multiHandLandmarks[index];
             drawFingers(landmarks)
-
-            drawConnectors(
-                canvasCtx, landmarks, HAND_CONNECTIONS,
-                {color: isRightHand ? colorWhite : colorWhite}),
-                drawLandmarks(canvasCtx, landmarks, {
-                    color: isRightHand ? colorWhite : colorWhite,
-                    fillColor: isRightHand ? colorWhite : colorWhite,
-                    radius: (x) => {
-                        return lerp(x.from.z, -0.15, .1, 10, 1);
-                    }
-                });
         }
     }
-    canvasCtx.restore();
 }
 
 const hands = new Hands({locateFile: (file) => {
