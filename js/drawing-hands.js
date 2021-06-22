@@ -20,6 +20,18 @@ export function initFingers() {
         dot.classList.add('dot');
         dot.classList.add('dot-' + finger);
         document.body.appendChild(dot);
+
+        dot.addEventListener('fingerHover', (e) => {
+            e.stopPropagation();
+            const box = boundingBoxes[e.detail.index];
+
+            if (box.isActive) {
+                return;
+            }
+
+            playSound(e.detail.index, () => box.isActive = false);
+            box.isActive = true;
+        });
     });
 }
 
@@ -49,18 +61,6 @@ export function drawFingers(landmarks) {
                 dot.dispatchEvent(event);
             }
         }
-
-        dot.addEventListener('fingerHover', (e) => {
-            e.stopPropagation();
-            const box = boundingBoxes[e.detail.index];
-
-            if (box.isActive) {
-                return;
-            }
-
-            playSound(e.detail.index, () => box.isActive = false);
-            box.isActive = true;
-        })
     });
 }
 
