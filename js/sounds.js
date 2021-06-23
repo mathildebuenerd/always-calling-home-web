@@ -51,17 +51,41 @@ export function playSound(audioIndex, callback) {
 }
 
 function giveVisualFeedback(index, durationInSeconds) {
-    const rockImage = document.querySelector(`.trigger-audio:nth-of-type(${index + 1})`);
-    rockImage.style.animation = `rockFloat${index} 4s infinite`;
+    const durationInMilliseconds = durationInSeconds * 1000;
 
-    setTimeout(() => {
-        image.style.animation = '';
-    }, durationInSeconds * 1000)
-
+    // Change background color
     const background = document.querySelector('.container');
     background.classList.add('flash-custom-background');
 
     setTimeout(() => {
         background.classList.remove('flash-custom-background');
     }, 1000)
+
+    // Animate rock
+    const rockImage = document.querySelector(`.trigger-audio:nth-of-type(${index + 1})`);
+    rockImage.style.animation = `rockFloat${index} 4s infinite`;
+
+    // Show the ear
+    const posXRock = rockImage.offsetLeft;
+    const posYRock = rockImage.offsetTop;
+
+    const ear = document.createElement('img');
+    ear.src = 'images/blue_ear.png';
+    ear.style.position = 'absolute';
+    ear.style.left = posXRock + Math.random()*80 + 'px';
+    ear.style.top = posYRock + Math.random()*50 + 'px';
+    ear.style.animation = `rockFloat${index} ${durationInSeconds/4}s infinite`;
+
+    const earContainer = document.querySelector('.ear-container');
+    earContainer.appendChild(ear);
+
+    setTimeout(() => {
+        rockImage.style.animation = '';
+
+        // Ear disappears progressively
+        ear.style.animation = 'fadeOut 0.5s';
+        setTimeout(() => {
+            ear.remove();
+        }, 500)
+    }, durationInMilliseconds)
 }
