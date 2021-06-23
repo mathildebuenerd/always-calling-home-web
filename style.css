@@ -16,8 +16,8 @@ body {
     mix-blend-mode: difference;
 }
 
-.animate-dot {
-    animation: fadeOut 3s both;
+.hide-dot {
+    visibility: hidden;
 }
 
 .trigger-audio {

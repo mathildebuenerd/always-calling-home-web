@@ -11,6 +11,8 @@ const fingersIndex = {
 const fingers = Object.keys(fingersIndex);
 const hands = ['left', 'right'];
 
+let fingerElements = [];
+
 const boundingBoxes = [];
 
 initFingers();
@@ -23,7 +25,6 @@ export function initFingers() {
         dot.classList.add('dot');
         // dot.classList.add('dot-' + hand + '-' + finger);
         dot.classList.add('dot-' + finger);
-        dot.classList.add('animate-dot');
         document.body.appendChild(dot);
 
         dot.addEventListener('fingerHover', (e) => {
@@ -37,8 +38,9 @@ export function initFingers() {
             playSound(e.detail.index, () => box.isActive = false);
             box.isActive = true;
         });
-    })
+    });
 // );
+    fingerElements = document.querySelectorAll('.dot');
 }
 
 function getAudioButtonsPosition() {
@@ -55,6 +57,8 @@ function getAudioButtonsPosition() {
 
 export function drawFingers(landmarks, classification) {
     // const hand = classification.toLowerCase();
+    fingerElements.forEach((finger) => finger.classList.remove('hide-dot'));
+
     fingers.map((finger) => {
         // const dot = document.querySelector('.dot-' + hand + '-' + finger);
         const dot = document.querySelector('.dot-' + finger);
@@ -62,16 +66,6 @@ export function drawFingers(landmarks, classification) {
         const topPos = landmarks[fingersIndex[finger]].y * videoElement.offsetHeight + 'px';
         dot.style.left = leftPos;
         dot.style.top = topPos;
-
-        setTimeout(() => {
-            dot.classList.remove('animate-dot')
-        }, 1);
-
-        setTimeout(() => {
-            dot.classList.add('animate-dot')
-        }, 2);
-
-
 
         for (const [index, boundingBox] of boundingBoxes.entries()) {
             if (hasEnteredButton(boundingBox.boundingBox, leftPos, topPos)) {
@@ -81,6 +75,10 @@ export function drawFingers(landmarks, classification) {
             }
         }
     });
+}
+
+export function hideFingers() {
+    fingerElements.forEach((finger) => finger.classList.add('hide-dot'));
 }
 
 function hasEnteredButton(boundingBox, leftPos, topPos) {
