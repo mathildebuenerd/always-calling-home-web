@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" type="text/css" href="mediapipe/style.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
 
 <!--    <meta name="description" content="Page description">-->
 <!--    <meta property="og:title" content="Unique page title - My Site">-->
@@ -45,8 +48,16 @@
         <div class="message">
             Always calling home
         </div>
+        <p class="message-allow-access">You need to allow access to your camera :)</p>
+    </div>
+
+    <div class="instructions">
+        <p>Welcome to <em>Always calling home</em>.</p>
+        <p>Your camera is activated. Activate the sound and move your hand around the wandering rocks to explore the space.</p>
+        <button class="close-instructions" title="Close">✕</button>
     </div>
     <script src="mediapipe/js/camera.js" type="module"></script>
     <script src="js/drawing-hands.js" type="module"></script>
+    <script src="js/ui.js" type="module"></script>
 </body>
 </html>

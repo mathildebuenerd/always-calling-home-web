@@ -1,3 +1,7 @@
+body {
+    font-family: 'Inconsolata', monospace;
+}
+
 .dot {
     width: 1px;
     height: 1px;
@@ -44,6 +48,48 @@ video.input_video.selfie {
     top: 0;
     left: 0;
     z-index: 2;
+}
+
+.message-allow-access {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    padding: 10px 20px;
+    color: #1b2336;
+    background-color: #6efd85a3;
+    border-radius: 30px;
+    font-style: italic;
+}
+
+.instructions {
+    position: absolute;
+    top: 0;
+    left: -30px;
+    opacity: 0;
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #ffffff24;
+    max-width: 50vw;
+    width: 450px;
+    transition: 1s;
+}
+
+.close-instructions {
+    border: none;
+    position: absolute;
+    top: 8px;
+    right: -5px;
+    padding: 5px 10px;
+    background-color: #ffffffc2;
+    color: black;
+    cursor: pointer;
+}
+
+.show-instructions {
+    left: 20px;
+    opacity: 1;
 }
 
 @keyframes rockFloat0 {

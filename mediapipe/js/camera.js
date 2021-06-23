@@ -7,6 +7,8 @@ export const videoElement =
 const controlsElement =
     document.getElementsByClassName('control-panel')[0];
 
+let firstResults = true;
+
 // We'll add this to our control panel later, but we'll save it here so we can
 // call tick() each time the graph runs.
 const fpsControl = new FPS();
@@ -18,6 +20,12 @@ spinner.ontransitionend = () => {
 };
 
 function onResults(results) {
+    if (firstResults) {
+        const event = new CustomEvent('pageLoaded');
+        window.dispatchEvent(event);
+    }
+
+    firstResults = false;
     // Hide the spinner.
     document.body.classList.add('loaded');
 
