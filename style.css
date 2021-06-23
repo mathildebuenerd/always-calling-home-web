@@ -17,7 +17,7 @@ body {
 }
 
 .animate-dot {
-    animation: fadeOut 2s both;
+    animation: fadeOut 3s both;
 }
 
 .trigger-audio {
@@ -69,6 +69,11 @@ video.input_video.selfie {
 @keyframes floatingButton {
     from {transform: translate(-50%, 5px)}
     to {transform: translate(-50%, -5px)}
+}
+
+.message-hand-detected {
+    position: absolute;
+    right: 25px;
 }
 
 .instructions {

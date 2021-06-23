@@ -7,25 +7,21 @@ export const videoElement =
 const controlsElement =
     document.getElementsByClassName('control-panel')[0];
 
-let firstResults = true;
-
 // We'll add this to our control panel later, but we'll save it here so we can
 // call tick() each time the graph runs.
 const fpsControl = new FPS();
 
 // Optimization: Turn off animated spinner after its hiding animation is done.
 const spinner = document.querySelector('.loading');
+
+const messageHandDetected = document.querySelector('.message-hand-detected');
 spinner.ontransitionend = () => {
     spinner.style.display = 'none';
+    const event = new CustomEvent('pageLoaded');
+    window.dispatchEvent(event);
 };
 
 function onResults(results) {
-    if (firstResults) {
-        const event = new CustomEvent('pageLoaded');
-        window.dispatchEvent(event);
-    }
-
-    firstResults = false;
     // Hide the spinner.
     document.body.classList.add('loaded');
 
@@ -35,7 +31,8 @@ function onResults(results) {
     if (results.multiHandLandmarks && results.multiHandedness) {
         for (let index = 0; index < results.multiHandLandmarks.length; index++) {
             const classification = results.multiHandedness[index];
-            const isRightHand = classification.label === 'Right';
+            // const isRightHand = classification.label === 'Right';
+            messageHandDetected.innerHTML = `<strong>${classification.label}</strong> hand detected`
             const landmarks = results.multiHandLandmarks[index];
             drawFingers(landmarks, classification.label)
         }
