@@ -37,6 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const image = document.createElement('img');
         image.src = `images/rocks/rock_${index}.png`;
+        image.style.maxWidth = (Math.random() * 120 + 60) + 'px'
 
         triggerAudio.appendChild(image);
         document.body.appendChild(triggerAudio);
