@@ -29,7 +29,7 @@ function onResults(results) {
             const classification = results.multiHandedness[index];
             const isRightHand = classification.label === 'Right';
             const landmarks = results.multiHandLandmarks[index];
-            drawFingers(landmarks)
+            drawFingers(landmarks, classification.label)
         }
     }
 }

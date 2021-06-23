@@ -7,18 +7,23 @@ const fingersIndex = {
     middle: 12,
     ring: 16,
     little: 20,
-}
+};
 const fingers = Object.keys(fingersIndex);
+const hands = ['left', 'right'];
+
 const boundingBoxes = [];
 
 initFingers();
 setTimeout(getAudioButtonsPosition, 5000);
 
 export function initFingers() {
-    fingers.map((finger) => {
+    // hands.map(hand =>
+        fingers.map((finger) => {
         const dot = document.createElement('div');
         dot.classList.add('dot');
+        // dot.classList.add('dot-' + hand + '-' + finger);
         dot.classList.add('dot-' + finger);
+        dot.classList.add('animate-dot');
         document.body.appendChild(dot);
 
         dot.addEventListener('fingerHover', (e) => {
@@ -32,7 +37,8 @@ export function initFingers() {
             playSound(e.detail.index, () => box.isActive = false);
             box.isActive = true;
         });
-    });
+    })
+// );
 }
 
 function getAudioButtonsPosition() {
@@ -47,13 +53,26 @@ function getAudioButtonsPosition() {
     }
 }
 
-export function drawFingers(landmarks) {
+export function drawFingers(landmarks, classification) {
+    // const hand = classification.toLowerCase();
     fingers.map((finger) => {
+        // const dot = document.querySelector('.dot-' + hand + '-' + finger);
         const dot = document.querySelector('.dot-' + finger);
         const leftPos = landmarks[fingersIndex[finger]].x * videoElement.offsetWidth + 'px';
         const topPos = landmarks[fingersIndex[finger]].y * videoElement.offsetHeight + 'px';
         dot.style.left = leftPos;
         dot.style.top = topPos;
+        // dot.style.animation = '';
+        // dot.style.opacity = '1';
+        setTimeout(() => {
+            dot.classList.remove('animate-dot')
+        }, 1);
+
+        setTimeout(() => {
+            dot.classList.add('animate-dot')
+        }, 2);
+
+
 
         for (const [index, boundingBox] of boundingBoxes.entries()) {
             if (hasEnteredButton(boundingBox.boundingBox, leftPos, topPos)) {

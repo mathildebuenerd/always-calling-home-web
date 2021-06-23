@@ -6,10 +6,14 @@
     top: 0;
     left: 0;
     z-index: 1;
+    opacity: 1;
     border-radius: 100%;
     transition: 0.1s ease;
     mix-blend-mode: difference;
-    /*animation: fadeOut 1s both;*/
+}
+
+.animate-dot {
+    animation: fadeOut 2s both;
 }
 
 .trigger-audio {
@@ -104,7 +108,8 @@ video.input_video.selfie {
     100% {transform: translate3d(0, 0, 0)}
 }
 
-/*@keyframes fadeOut {*/
-/*    0% { opacity: 1; }*/
-/*    100% { opacity: 0; }*/
-/*}*/
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
