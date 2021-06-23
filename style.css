@@ -52,15 +52,23 @@ video.input_video.selfie {
 
 .message-allow-access {
     position: absolute;
-    bottom: 10%;
+    top: calc(50% + 100px);
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 5px);
     z-index: 2;
-    padding: 10px 20px;
+    padding: 15px 20px;
+    box-sizing: border-box;
     color: #1b2336;
-    background-color: #6efd85a3;
+    background-color: #c8ffd1;
     border-radius: 30px;
-    font-style: italic;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.36);
+    animation: floatingButton 3s infinite alternate;
+    transition: 0.5s;
+}
+
+@keyframes floatingButton {
+    from {transform: translate(-50%, 5px)}
+    to {transform: translate(-50%, -5px)}
 }
 
 .instructions {
