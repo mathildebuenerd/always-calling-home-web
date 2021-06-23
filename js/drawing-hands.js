@@ -62,8 +62,7 @@ export function drawFingers(landmarks, classification) {
         const topPos = landmarks[fingersIndex[finger]].y * videoElement.offsetHeight + 'px';
         dot.style.left = leftPos;
         dot.style.top = topPos;
-        // dot.style.animation = '';
-        // dot.style.opacity = '1';
+
         setTimeout(() => {
             dot.classList.remove('animate-dot')
         }, 1);

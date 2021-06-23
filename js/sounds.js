@@ -19,20 +19,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const offset = 200;
 
+        const triggerAudio = document.createElement('figure');
+        triggerAudio.classList.add('trigger-audio');
+        triggerAudio.style.left = Math.random() * (window.innerWidth - offset) + offset/2 + 'px';
+        triggerAudio.style.top = Math.random() * (window.innerHeight - offset) + offset/2 + 'px';
+
         const image = document.createElement('img');
         image.src = `images/rocks/rock_${index}.png`;
-        image.classList.add('trigger-audio');
-        image.style.left = Math.random() * (window.innerWidth - offset) + offset/2 + 'px';
-        image.style.top = Math.random() * (window.innerHeight - offset) + offset/2 + 'px';
 
-        document.body.appendChild(image);
+        triggerAudio.appendChild(image);
+        document.body.appendChild(triggerAudio);
     });
 });
 
 
 export function playSound(audioIndex, callback) {
     const audio = audioList[audioIndex];
-    console.log('I am playing ' + files[audioIndex])
 
     // During the sound playing, we set isActive to true,
     // and prevent the sound to be played again
@@ -44,10 +46,8 @@ export function playSound(audioIndex, callback) {
     // Animate the rock
     giveVisualFeedback(audioIndex, durationInSeconds);
 
-    setTimeout(() => {
-        console.log('I stop playing ' + files[audioIndex])
-        callback();
-    }, durationInMilliseconds)
+    // Executes after the sound has ended
+    setTimeout(callback, durationInMilliseconds)
 }
 
 function giveVisualFeedback(index, durationInSeconds) {
@@ -62,30 +62,31 @@ function giveVisualFeedback(index, durationInSeconds) {
     }, 1000)
 
     // Animate rock
-    const rockImage = document.querySelector(`.trigger-audio:nth-of-type(${index + 1})`);
-    rockImage.style.animation = `rockFloat${index} 4s infinite`;
+    // We select the element using nth-of-type and this works because
+    // only triggerAudio blocks are <figure>. If other figures
+    // are added to the page, bugs can appear
+    const triggerAudio = document.querySelector(`figure.trigger-audio:nth-of-type(${index + 1})`);
+    triggerAudio.style.animation = `rockFloat${index} 4s infinite`;
 
-    // Show the ear
-    const posXRock = rockImage.offsetLeft;
-    const posYRock = rockImage.offsetTop;
-
+    // Add the blue ear
     const ear = document.createElement('img');
     ear.src = 'images/blue_ear.png';
     ear.style.position = 'absolute';
-    ear.style.left = posXRock + Math.random()*80 + 'px';
-    ear.style.top = posYRock + Math.random()*50 + 'px';
-    ear.style.animation = `rockFloat${index} ${durationInSeconds/4}s infinite`;
 
-    const earContainer = document.querySelector('.ear-container');
-    earContainer.appendChild(ear);
+    // Adding some offset to put the ear in the center of the image
+    // and not on the top left
+    ear.style.left = Math.random() * 80 + 'px';
+    ear.style.top = Math.random() * 50 + 'px';
+
+    triggerAudio.appendChild(ear);
 
     setTimeout(() => {
-        rockImage.style.animation = '';
+        triggerAudio.style.animation = '';
 
         // Ear disappears progressively
         ear.style.animation = 'fadeOut 0.5s';
         setTimeout(() => {
             ear.remove();
-        }, 500)
-    }, durationInMilliseconds)
+        }, 500);
+    }, durationInMilliseconds);
 }

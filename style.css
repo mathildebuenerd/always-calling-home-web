@@ -18,10 +18,13 @@
 
 .trigger-audio {
     position: absolute;
-    z-index: 0;
-    max-width: 150px;
     transform: translate(0);
     transition: 1s ease;
+}
+
+.trigger-audio img {
+    z-index: 0;
+    max-width: 150px;
 }
 
 video.input_video.selfie {
