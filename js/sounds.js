@@ -10,6 +10,19 @@ const files = [
     '13169_(1995_XS1)_2458055_26304',
 ];
 
+// Positions [top, left] in percentage for each trigger
+const positions = [
+    [15, 60],
+    [25, 70],
+    [30, 20],
+    [40, 15],
+    [45, 50],
+    [50, 40],
+    [65, 30],
+    [55, 70],
+    [80, 45],
+];
+
 const audioList = [];
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -17,12 +30,10 @@ window.addEventListener('DOMContentLoaded', () => {
         const audio = new Audio('sounds/' + file + '.mp3');
         audioList.push(audio);
 
-        const offset = 200;
-
         const triggerAudio = document.createElement('figure');
         triggerAudio.classList.add('trigger-audio');
-        triggerAudio.style.left = Math.random() * (window.innerWidth - offset) + offset/2 + 'px';
-        triggerAudio.style.top = Math.random() * (window.innerHeight - offset) + offset/2 + 'px';
+        triggerAudio.style.left = positions[index][0] + '%';
+        triggerAudio.style.top = positions[index][1] + '%';
 
         const image = document.createElement('img');
         image.src = `images/rocks/rock_${index}.png`;
