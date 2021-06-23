@@ -31,9 +31,29 @@ body {
 
 .container {
     position: absolute;
-    background-color: #596e73;
     width: 100vw;
     height: 100vh;
+    background-color: teal;
+    opacity: 0;
+}
+
+.flash-custom-background {
+    animation: backgroundFlash 1s;
+}
+
+@keyframes backgroundFlash {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .input_video {
@@ -44,6 +64,7 @@ body {
     bottom: 0;
     width: 100vw;
     height: 100vh;
+    visibility: hidden;
 }
 
 .input_video .selfie {
@@ -118,13 +139,4 @@ body {
 
 .loaded .loading {
     opacity: 0;
-}
-
-.shoutout {
-    left: 0;
-    right: 0;
-    bottom: 40px;
-    text-align: center;
-    font-size: 24px;
-    position: absolute;
 }

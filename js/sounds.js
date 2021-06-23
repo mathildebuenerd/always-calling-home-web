@@ -51,9 +51,17 @@ export function playSound(audioIndex, callback) {
 }
 
 function giveVisualFeedback(index, durationInSeconds) {
-    const image = document.querySelector(`.trigger-audio:nth-of-type(${index + 1})`);
-    image.style.animation = `rockFloat${index} 4s infinite`;
+    const rockImage = document.querySelector(`.trigger-audio:nth-of-type(${index + 1})`);
+    rockImage.style.animation = `rockFloat${index} 4s infinite`;
+
     setTimeout(() => {
         image.style.animation = '';
     }, durationInSeconds * 1000)
+
+    const background = document.querySelector('.container');
+    background.classList.add('flash-custom-background');
+
+    setTimeout(() => {
+        background.classList.remove('flash-custom-background');
+    }, 1000)
 }
