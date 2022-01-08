@@ -1,4 +1,3 @@
-// Colors
 import {drawFingers, hideFingers} from "../../js/drawing-hands.js";
 
 // Our input frames will come from here.

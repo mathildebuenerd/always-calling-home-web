@@ -30,6 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const audio = new Audio('sounds/' + file + '.mp3');
         audioList.push(audio);
 
+        // A trigger is an image of a rock
         const triggerAudio = document.createElement('figure');
         triggerAudio.classList.add('trigger-audio');
         triggerAudio.style.left = positions[index][0] + '%';

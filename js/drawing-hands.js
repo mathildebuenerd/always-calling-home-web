@@ -19,11 +19,9 @@ initFingers();
 setTimeout(getAudioButtonsPosition, 5000);
 
 export function initFingers() {
-    // hands.map(hand =>
         fingers.map((finger) => {
         const dot = document.createElement('div');
         dot.classList.add('dot');
-        // dot.classList.add('dot-' + hand + '-' + finger);
         dot.classList.add('dot-' + finger);
         document.body.appendChild(dot);
 
@@ -39,7 +37,6 @@ export function initFingers() {
             box.isActive = true;
         });
     });
-// );
     fingerElements = document.querySelectorAll('.dot');
 }
 
